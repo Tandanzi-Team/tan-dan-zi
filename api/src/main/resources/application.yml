@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: tandanzi
+  threads:
+    virtual:
+      enabled: true
+  jpa:
+    database: mysql
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  datasource:
+    url: jdbc:mysql://localhost/tandanzi
+    username: tandanzi-user
+    password: tandanzi-password
+  cache:
+    type: redis
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
+---
+spring:
+  config:
+    activate:
+      on-profile: default
+  sql:
+    init:
+      mode: always
+
+---
+spring:
+  config:
+    activate:
+      on-profile: production
+  datasource:
+    url: jdbc:mysql://mysql/tandanzi
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}

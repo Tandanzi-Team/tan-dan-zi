@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  mysql:
+    container_name: tandanzi-mysql
+    image: mysql:8.3.0
+    environment:
+      MYSQL_DATABASE: tandanzi
+      MYSQL_USER: tandanzi-user
+      MYSQL_PASSWORD: tandanzi-password
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    ports:
+      - "3306:3306"
+
+  redis:
+    container_name: tandanzi-redis
+    image: redis:7.2.4
+    ports:
+      - "6379:6379"
