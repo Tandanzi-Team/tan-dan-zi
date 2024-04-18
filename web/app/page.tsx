@@ -39,7 +39,6 @@ const Container = styled.div`
   justify-content: center;
   min-height: 100vh;
   width: 100vw;
-  background-color: #F5F5F5;
 `;
 
 const Title = styled.div`
@@ -66,13 +65,11 @@ const Button = styled.button`
   border-radius: 10px;
   cursor: pointer;
   font-size: 15px;
-  font-weight: 200;
   color: #ffffff;
 `;
 
 const GotoSignUp = styled.div`
   margin: 0px 0px 50px 0px;
-  font-weight: 200;
 `;
 
 const StyledLink = styled.a`
