@@ -78,7 +78,7 @@ const Direction = styled.div`
 const InputWrapper = styled.div`
   width: 100%;
   max-width: 25rem;
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.8rem;
 `;
 
 const InputTitle = styled.div`
