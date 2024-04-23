@@ -9,14 +9,14 @@ import Main from "../public/main.svg";
 import Record from "../public/record.svg";
 import Detail from "../public/detail.svg";
 
-export default function Navigator () {
+export default function NavigatonBar () {
   const router = useRouter();
 
   return (
     <Container>
       <IconWrapper>
         <Logo
-          onClick={() => router.push("/main")}
+          onClick={() => router.push("/")}
         />
       </IconWrapper>
       <Border/>
