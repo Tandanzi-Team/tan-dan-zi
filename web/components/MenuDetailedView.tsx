@@ -9,8 +9,7 @@ export default function MenuDetailedView() {
   return (
     <Container>
       <Header>
-        <TodayMe>오늘의 나는</TodayMe>
-        <TodayWeight>56kg</TodayWeight>
+        <TodayMe>오늘의 식단</TodayMe>
         <TodayInfoWrapper>
           탄수화물
         </TodayInfoWrapper>
@@ -137,17 +136,10 @@ const Header = styled.div`
 `;
 
 const TodayMe = styled.h1`
-  margin-right: -60px;
+  margin-right: 360px;
   font-size: 2.5rem;
   font-weight: 700;
   color: #212B36;
-`;
-
-const TodayWeight = styled.span`
-  margin-right: 220px;
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #8A92A6;
 `;
 
 const Row = styled.div`

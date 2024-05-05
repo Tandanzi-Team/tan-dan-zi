@@ -37,11 +37,11 @@ export default function Main() {
           </UserInfoWrapper>
           <TodayInfoWrapper>
             <TodayInfo>
-              <InfoTitle>목표 몸무게까지</InfoTitle>
-              <InfoFigure>5kg</InfoFigure>
+              <InfoTitle>오늘의 몸무게</InfoTitle>
+              <InfoFigure>56kg</InfoFigure>
               <InfoWrapper>
-                <InfoCompare>-10kg</InfoCompare>
-                <InfoStandard>최근 10일</InfoStandard>
+                <InfoStandard>어제보다</InfoStandard>
+                <InfoCompare>-1kg</InfoCompare>
               </InfoWrapper>
               <InfoGraph><ChartComponent/></InfoGraph>
             </TodayInfo>
@@ -49,8 +49,8 @@ export default function Main() {
               <InfoTitle>오늘의 칼로리</InfoTitle>
               <InfoFigure>5000kcal</InfoFigure>
               <InfoWrapper>
+                <InfoStandard>어제보다</InfoStandard>
                 <InfoCompare>-20kcal</InfoCompare>
-                <InfoStandard>최근 10일</InfoStandard>
               </InfoWrapper>
               <InfoGraph><ChartComponent/></InfoGraph>
             </TodayInfo>
@@ -58,8 +58,8 @@ export default function Main() {
               <InfoTitle>오늘의 탄수화물</InfoTitle>
               <InfoFigure>20g</InfoFigure>
               <InfoWrapper>
+                <InfoStandard>어제보다</InfoStandard>
                 <InfoCompare>-2g</InfoCompare>
-                <InfoStandard>최근 10일</InfoStandard>
               </InfoWrapper>
               <InfoGraph><ChartComponent/></InfoGraph>
             </TodayInfo>
@@ -67,8 +67,8 @@ export default function Main() {
               <InfoTitle>오늘의 단백질</InfoTitle>
               <InfoFigure>20g</InfoFigure>
               <InfoWrapper>
+                <InfoStandard>어제보다</InfoStandard>
                 <InfoCompare>-10g</InfoCompare>
-                <InfoStandard>최근 10일</InfoStandard>
               </InfoWrapper>
               <InfoGraph><ChartComponent/></InfoGraph>
             </TodayInfo>
@@ -76,8 +76,8 @@ export default function Main() {
               <InfoTitle>오늘의 지방</InfoTitle>
               <InfoFigure>50g</InfoFigure>
               <InfoWrapper>
+                <InfoStandard>어제보다</InfoStandard>
                 <InfoCompare>+100g</InfoCompare>
-                <InfoStandard>최근 10일</InfoStandard>
               </InfoWrapper>
               <InfoGraph><ChartComponent/></InfoGraph>
             </TodayInfo>
@@ -188,7 +188,7 @@ const InfoWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-left: 0.25rem;
+  margin-left: 0.5rem;
 `;
 
 const InfoCompare = styled.div`

@@ -42,7 +42,7 @@ const Container = styled.div`
 `;
 
 const Title = styled.div`
-  margin: 0px 0px 30px 0px;
+  margin: 30px 0px 30px 0px;
   text-align: center;
   font-size: 2.5rem;
   font-weight: 800;

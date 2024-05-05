@@ -3,6 +3,8 @@
 import styled from "styled-components";
 import Image from 'next/image';
 import { useRouter } from "next/navigation";
+
+import NavigatonBar from "../../components/NavigatonBar";
 import CameraIcon from "../../public/camera.svg"
 
 export default function MyPage () {
@@ -11,6 +13,7 @@ export default function MyPage () {
   return (
     <>
     <Container>
+      <NavigatonBar/>
       <ProfileImage>
         <Image
           src="/profile.png"
@@ -47,13 +50,6 @@ export default function MyPage () {
       <InputWrapper>
         <InputTitle>신장(키)</InputTitle>
         <InputContainer placeholder="신장을 입력해 주세요" />
-      </InputWrapper>
-      <InputWrapper>
-        <InputTitleWrapper>
-          <InputTitle>목표 몸무게</InputTitle>
-          <Necessary>*</Necessary>
-        </InputTitleWrapper>
-        <InputContainer placeholder="목표 몸무게를 입력해 주세요" />
       </InputWrapper>
       <InputWrapper>
         <InputTitle>비밀번호 변경</InputTitle>
