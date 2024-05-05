@@ -27,7 +27,7 @@ export default function MenuDetailedView() {
           당류
         </TodayInfoWrapper>
         <TodayInfoWrapper>
-          식이섬유
+          나트륨
         </TodayInfoWrapper>
       </Header>
       <Row>
@@ -41,7 +41,7 @@ export default function MenuDetailedView() {
         <NutritionCell>10g</NutritionCell>
         <NutritionCell>200kcal</NutritionCell>
         <NutritionCell>30g</NutritionCell>
-        <NutritionCell>7g</NutritionCell>
+        <NutritionCell>600mg</NutritionCell>
       </Row>
       <Row>
         <TrashWrapper>
@@ -54,7 +54,7 @@ export default function MenuDetailedView() {
         <NutritionCell>10g</NutritionCell>
         <NutritionCell>200kcal</NutritionCell>
         <NutritionCell>30g</NutritionCell>
-        <NutritionCell>7g</NutritionCell>
+        <NutritionCell>600mg</NutritionCell>
       </Row>
       <Row>
         <TrashWrapper>
@@ -67,7 +67,7 @@ export default function MenuDetailedView() {
         <NutritionCell>10g</NutritionCell>
         <NutritionCell>200kcal</NutritionCell>
         <NutritionCell>30g</NutritionCell>
-        <NutritionCell>7g</NutritionCell>
+        <NutritionCell>600mg</NutritionCell>
       </Row>
       <Row>
         <TrashWrapper>
@@ -80,7 +80,7 @@ export default function MenuDetailedView() {
         <NutritionCell>10g</NutritionCell>
         <NutritionCell>200kcal</NutritionCell>
         <NutritionCell>30g</NutritionCell>
-        <NutritionCell>7g</NutritionCell>
+        <NutritionCell>600mg</NutritionCell>
       </Row>
       <Row>
         <TrashWrapper>
@@ -93,7 +93,7 @@ export default function MenuDetailedView() {
         <NutritionCell>10g</NutritionCell>
         <NutritionCell>200kcal</NutritionCell>
         <NutritionCell>30g</NutritionCell>
-        <NutritionCell>7g</NutritionCell>
+        <NutritionCell>600mg</NutritionCell>
       </Row>
       <Row>
         <TrashWrapper>
@@ -106,7 +106,7 @@ export default function MenuDetailedView() {
         <NutritionCell>10g</NutritionCell>
         <NutritionCell>200kcal</NutritionCell>
         <NutritionCell>30g</NutritionCell>
-        <NutritionCell>7g</NutritionCell>
+        <NutritionCell>600mg</NutritionCell>
       </Row>
     </Container>
   );
