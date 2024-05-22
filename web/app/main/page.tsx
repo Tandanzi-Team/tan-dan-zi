@@ -1,30 +1,30 @@
-"use client";
+'use client';
 
-import styled from "styled-components";
-import { useRouter } from "next/navigation";
+import styled from 'styled-components';
+import { useRouter } from 'next/navigation';
 
-import NavigatonBar from "../../components/NavigatonBar";
-import MenuQuickView from "../../components/MenuQuickView";
-import ChartComponent from "../../components/ChartComponent";
-import StackedBarChart from "../../components/StackedBarChart";
-import LegendComponent from "../../components/LegendComponent";
+import NavigatonBar from '../../components/NavigatonBar';
+import MenuQuickView from '../../components/views/MenuQuickView';
+import ChartComponent from '../../components/charts/TodayChart';
+import StackedBarChart from '../../components/charts/StackedBarChart';
+import LegendComponent from '../../components/charts/Legend';
 
 export default function Main() {
   const router = useRouter();
 
   const current = [
-    { name: "탄수화물", value: 40, color: "#ff3a29" },
-    { name: "단백질", value: 20, color: "#ffb200" },
-    { name: "지방", value: 40, color: "#4339f2" }
+    { name: '탄수화물', value: 40, color: '#ff3a29' },
+    { name: '단백질', value: 20, color: '#ffb200' },
+    { name: '지방', value: 40, color: '#4339f2' },
   ];
   const ideal = [
-    { name: "탄수화물", value: 50, color: "#fb9990" },
-    { name: "단백질", value: 30, color: "#fbd57c" },
-    { name: "지방", value: 20, color: "#9d98f5" }
-  ];  
+    { name: '탄수화물', value: 50, color: '#fb9990' },
+    { name: '단백질', value: 30, color: '#fbd57c' },
+    { name: '지방', value: 20, color: '#9d98f5' },
+  ];
 
-  const getCurrentColors = () => current.map(item => item.color);
-  const getIdealColors = () => ideal.map(item => item.color);
+  const getCurrentColors = () => current.map((item) => item.color);
+  const getIdealColors = () => ideal.map((item) => item.color);
 
   return (
     <Container>
@@ -43,7 +43,9 @@ export default function Main() {
                 <InfoStandard>어제보다</InfoStandard>
                 <InfoCompare>-1kg</InfoCompare>
               </InfoWrapper>
-              <InfoGraph><ChartComponent/></InfoGraph>
+              <InfoGraph>
+                <ChartComponent />
+              </InfoGraph>
             </TodayInfo>
             <TodayInfo>
               <InfoTitle>오늘의 칼로리</InfoTitle>
@@ -52,7 +54,9 @@ export default function Main() {
                 <InfoStandard>어제보다</InfoStandard>
                 <InfoCompare>-20kcal</InfoCompare>
               </InfoWrapper>
-              <InfoGraph><ChartComponent/></InfoGraph>
+              <InfoGraph>
+                <ChartComponent />
+              </InfoGraph>
             </TodayInfo>
             <TodayInfo>
               <InfoTitle>오늘의 탄수화물</InfoTitle>
@@ -61,7 +65,9 @@ export default function Main() {
                 <InfoStandard>어제보다</InfoStandard>
                 <InfoCompare>-2g</InfoCompare>
               </InfoWrapper>
-              <InfoGraph><ChartComponent/></InfoGraph>
+              <InfoGraph>
+                <ChartComponent />
+              </InfoGraph>
             </TodayInfo>
             <TodayInfo>
               <InfoTitle>오늘의 단백질</InfoTitle>
@@ -70,7 +76,9 @@ export default function Main() {
                 <InfoStandard>어제보다</InfoStandard>
                 <InfoCompare>-10g</InfoCompare>
               </InfoWrapper>
-              <InfoGraph><ChartComponent/></InfoGraph>
+              <InfoGraph>
+                <ChartComponent />
+              </InfoGraph>
             </TodayInfo>
             <TodayInfo>
               <InfoTitle>오늘의 지방</InfoTitle>
@@ -79,7 +87,9 @@ export default function Main() {
                 <InfoStandard>어제보다</InfoStandard>
                 <InfoCompare>+100g</InfoCompare>
               </InfoWrapper>
-              <InfoGraph><ChartComponent/></InfoGraph>
+              <InfoGraph>
+                <ChartComponent />
+              </InfoGraph>
             </TodayInfo>
             <TodayMenu>
               <MenuQuickView />
@@ -89,10 +99,22 @@ export default function Main() {
         <TodayTandanzi>
           <TodayTandanziTitle>
             오늘의 탄단지 비율
-            <LegendComponent data={current} colors={getCurrentColors()} index={0} />
+            <LegendComponent
+              data={current}
+              colors={getCurrentColors()}
+              index={0}
+            />
             <ChartsContainer>
-              <StackedBarChart data={current} colors={getCurrentColors()} index={0} />
-              <StackedBarChart data={ideal} colors={getIdealColors()} index={1} />
+              <StackedBarChart
+                data={current}
+                colors={getCurrentColors()}
+                index={0}
+              />
+              <StackedBarChart
+                data={ideal}
+                colors={getIdealColors()}
+                index={1}
+              />
             </ChartsContainer>
           </TodayTandanziTitle>
         </TodayTandanzi>
@@ -147,10 +169,7 @@ const Date = styled.div`
 
 const TodayInfoWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(
-    5,
-    1fr
-  );
+  grid-template-columns: repeat(5, 1fr);
   gap: 20px;
   padding: 20px;
   align-items: start;
