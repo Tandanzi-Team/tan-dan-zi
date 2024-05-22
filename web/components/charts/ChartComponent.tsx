@@ -1,12 +1,17 @@
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
 
+interface DataPoint {
+  day: string;
+  value: number;
+}
+
 const ChartComponent: React.FC = () => {
   const ref = useRef(null);
 
   useEffect(() => {
     // 데이터와 SVG 도메인 설정
-    const data = [
+    const data: DataPoint[] = [
       { day: "2024/03/19", value: 10 },
       { day: "2024/03/20", value: 20 },
       { day: "2024/03/21", value: 70 },
@@ -29,20 +34,23 @@ const ChartComponent: React.FC = () => {
       .attr("width", width)
       .attr("height", height);
 
-    // 스케일 설정
+    // xScale 설정
+    const xExtent = d3.extent(data, d => new Date(d.day)) as [Date, Date];
     const xScale = d3.scaleTime()
-      .domain(d3.extent(data, d => new Date(d.day)))
+      .domain(xExtent)
       .range([0, width]);
 
+    // yScale 설정
+    const yMax = d3.max(data, d => d.value) as number;
     const yScale = d3.scaleLinear()
-      .domain([0, d3.max(data, d => d.value)])
+      .domain([0, yMax])
       .range([height, 0]);
 
     // 라인 생성기 설정
-    const line = d3.line()
+    const line = d3.line<DataPoint>()
       .x(d => xScale(new Date(d.day)))
       .y(d => yScale(d.value))
-      .curve(d3.curveBasis);  // 부드러운 곡선을 위해 curveBasis 적용
+      .curve(d3.curveBasis);
 
     // 라인 그리기
     svg.append("path")
@@ -52,7 +60,7 @@ const ChartComponent: React.FC = () => {
       .attr("stroke-width", 4)
       .attr("d", line);
 
-  }, []);  // 빈 의존성 배열은 컴포넌트가 마운트 될 때만 이펙트를 실행한다는 것을 의미
+  }, []);
 
   return <div ref={ref} />;
 };
