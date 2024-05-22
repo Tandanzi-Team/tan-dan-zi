@@ -23,26 +23,26 @@ const ChartComponent: React.FC = () => {
 
     // SVG 요소를 선택하고, 만약 없다면 추가
     const svg = d3.select(ref.current)
-                  .selectAll("svg")
-                  .data([null])
-                  .join("svg")
-                  .attr("width", width)
-                  .attr("height", height);
+      .selectAll("svg")
+      .data([null])
+      .join("svg")
+      .attr("width", width)
+      .attr("height", height);
 
     // 스케일 설정
     const xScale = d3.scaleTime()
-                    .domain(d3.extent(data, d => new Date(d.day)))
-                    .range([0, width]);
+      .domain(d3.extent(data, d => new Date(d.day)))
+      .range([0, width]);
 
     const yScale = d3.scaleLinear()
-                    .domain([0, d3.max(data, d => d.value)])
-                    .range([height, 0]);
+      .domain([0, d3.max(data, d => d.value)])
+      .range([height, 0]);
 
     // 라인 생성기 설정
     const line = d3.line()
-                  .x(d => xScale(new Date(d.day)))
-                  .y(d => yScale(d.value))
-                  .curve(d3.curveBasis);  // 부드러운 곡선을 위해 curveBasis 적용
+      .x(d => xScale(new Date(d.day)))
+      .y(d => yScale(d.value))
+      .curve(d3.curveBasis);  // 부드러운 곡선을 위해 curveBasis 적용
 
     // 라인 그리기
     svg.append("path")
@@ -51,8 +51,6 @@ const ChartComponent: React.FC = () => {
       .attr("stroke", "#34B53A")
       .attr("stroke-width", 4)
       .attr("d", line);
-
-    // ... 축 추가 or 추가적인 시각화 작업
 
   }, []);  // 빈 의존성 배열은 컴포넌트가 마운트 될 때만 이펙트를 실행한다는 것을 의미
 

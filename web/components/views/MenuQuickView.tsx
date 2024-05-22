@@ -3,7 +3,7 @@
 import styled from "styled-components"
 import { useRouter } from "next/navigation";
 
-import AddButton from "../public/add.svg";
+import AddButton from "@/public/add.svg";
 
 export default function MenuQuickView() {
   const router = useRouter();

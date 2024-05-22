@@ -3,7 +3,7 @@
 import styled from "styled-components"
 import { useRouter } from "next/navigation";
 
-import Trash from "../public/trash.svg"
+import Trash from "@/public/trash.svg"
 
 export default function MenuDetailedView() {
   return (
