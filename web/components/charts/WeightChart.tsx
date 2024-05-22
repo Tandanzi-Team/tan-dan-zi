@@ -1,74 +1,81 @@
 import { useEffect, useRef } from "react";
 import * as d3 from "d3";
-import { NumberValue } from 'd3';
 
 interface WeightData {
-  value: NumberValue;
-  date: string;
-  weight: number;
+  day: string;
+  value: number;
 }
 
-interface WeightChartProps {
-  data: WeightData[];
-}
-
-const WeightChart: React.FC<WeightChartProps> = ({ data }) => {
-  const ref = useRef<SVGSVGElement>(null);
+const ChartComponent: React.FC = () => {
+  const ref = useRef(null);
 
   useEffect(() => {
-    if (!ref.current) return;
+    // 데이터와 SVG 도메인 설정
+    const data: WeightData[] = [
+      { day: "2024/03/19", value: 10 },
+      { day: "2024/03/20", value: 20 },
+      { day: "2024/03/21", value: 70 },
+      { day: "2024/03/22", value: 40 },
+      { day: "2024/03/23", value: 10 },
+      { day: "2024/03/24", value: 60 },
+      { day: "2024/03/25", value: 30 },
+      { day: "2024/03/26", value: 80 },
+      { day: "2024/03/27", value: 10 },
+      { day: "2024/03/28", value: 20 },
+    ];
+    const width = 380;
+    const height = 280;
 
-    const margin = { top: 20, right: 30, bottom: 30, left: 40 };
-    const width = 400 - margin.left - margin.right;
-    const height = 300 - margin.top - margin.bottom;
-
+    // SVG 요소를 선택하고, 만약 없다면 추가
     const svg = d3.select(ref.current)
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-      .attr("transform", `translate(${margin.left},${margin.top})`);
+      .selectAll("svg")
+      .data([null])
+      .join("svg")
+      .attr("width", width)
+      .attr("height", height);
 
+    // xScale 설정
+    const xExtent = d3.extent(data, d => new Date(d.day)) as [Date, Date];
     const xScale = d3.scaleTime()
-      .domain(d3.extent(data, d => new Date(d.date)) as [Date, Date])
+      .domain(xExtent)
       .range([0, width]);
 
+    // yScale 설정
+    const yMax = d3.max(data, d => d.value) as number;
     const yScale = d3.scaleLinear()
-      .domain([0, d3.max(data, d => d.weight)!])
+      .domain([0, yMax])
       .range([height, 0]);
 
+    // 라인 생성기 설정
     const line = d3.line<WeightData>()
-      .x(d => xScale(new Date(d.date)))
-      .y(d => yScale(d.weight))
-      .curve(d3.curveBasis);  // 곡선형 차트를 위한 설정
+      .x(d => xScale(new Date(d.day)))
+      .y(d => yScale(d.value))
+      .curve(d3.curveBasis);
 
+    // 영역 생성기 설정
+    const area = d3.area<WeightData>()
+      .x(d => xScale(new Date(d.day)))
+      .y0(height)
+      .y1(d => yScale(d.value))
+      .curve(d3.curveBasis);
+
+    // 영역 그리기
+    svg.append("path")
+      .datum(data)
+      .attr("fill", "#34B53A")
+      .attr("d", area);
+
+    // 라인 그리기
     svg.append("path")
       .datum(data)
       .attr("fill", "none")
       .attr("stroke", "#34B53A")
-      .attr("stroke-width", 2)
+      .attr("stroke-width", 4)
       .attr("d", line);
 
-    svg.append("g")
-      .attr("transform", `translate(0,${height})`)
-      .call(d3.axisBottom(xScale));
+  }, []);
 
-    svg.append("g")
-      .call(d3.axisLeft(yScale));
+  return <div ref={ref} />;
+};
 
-    const area = d3.area<WeightData>()
-      .x(d => xScale(new Date(d.date)))
-      .y0(height)
-      .y1(d => yScale(d.value))
-      .curve(d3.curveMonotoneX); // 라인을 부드럽게
-
-    svg.append("path")
-      .datum(data)
-      .attr("fill", "green")
-      .attr("d", area);
-
-  }, [data]);
-
-  return <svg ref={ref} />;
-}
-
-export default WeightChart;
+export default ChartComponent;
