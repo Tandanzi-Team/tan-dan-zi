@@ -3,7 +3,7 @@
 import styled from "styled-components"
 import { useRouter } from "next/navigation";
 
-import AddButton from "../public/add.svg";
+import AddButton from "@/public/add.svg";
 
 export default function MenuQuickView() {
   const router = useRouter();
@@ -11,8 +11,7 @@ export default function MenuQuickView() {
   return (
     <Container>
       <Header>
-        <TodayMe>오늘의 나는</TodayMe>
-        <TodayWeight>56kg</TodayWeight>
+        <TodayMe>오늘의 식단</TodayMe>
         <TodayInfoWrapper>
           탄수화물
         </TodayInfoWrapper>
@@ -112,17 +111,10 @@ const Header = styled.div`
 `;
 
 const TodayMe = styled.h1`
-  margin-right: -60px;
+  margin-right: 320px;
   font-size: 2.5rem;
   font-weight: 700;
   color: #212B36;
-`;
-
-const TodayWeight = styled.span`
-  margin-right: 200px;
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #8A92A6;
 `;
 
 const Row = styled.div`

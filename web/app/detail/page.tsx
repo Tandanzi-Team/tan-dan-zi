@@ -1,9 +1,41 @@
 "use client";
 
 import styled from "styled-components";
-import NavigatonBar from "../../components/NavigatonBar";
+
+import NavigatonBar from "@/components/NavigatonBar";
+import StackedBarsChart from "@/components/charts/StackedBarsChart";
+import Legend from "@/components/charts/Legend";
+import WeightChart from "@/components/charts/WeightChart";
+import CalorieChart from "@/components/charts/CalorieChart"
 
 export default function Detail() {
+  // TODO 서버와의 통신 전 랜덤한 값을 하드코딩하기 위한 메서드이므로 추후 삭제 필요
+  const generateRandomData = () => {
+    let data = [];
+    for (let i = 0; i < 10; i++) {
+      let carbs = Math.floor(Math.random() * 61) + 10; // 10에서 70 사이의 랜덤 값
+      let protein = Math.floor(Math.random() * (101 - carbs)); // 남은 범위에서 랜덤 값
+      let fat = 100 - carbs - protein; // 나머지를 지방으로
+
+      data.push([
+        { name: "탄수화물", value: carbs, color: "#ff3a29" },
+        { name: "단백질", value: protein, color: "#ffb200" },
+        { name: "지방", value: fat, color: "#4339f2" },
+      ]);
+    }
+    return data;
+  };
+
+  const chartData = generateRandomData();
+
+  const current = [
+    { name: "탄수화물", value: 40, color: "#ff3a29" },
+    { name: "단백질", value: 20, color: "#ffb200" },
+    { name: "지방", value: 40, color: "#4339f2" },
+  ];
+
+  const getChartColors = () => current.map((item) => item.color);
+
   return (
     <Container>
       <NavigatonBar />
@@ -16,7 +48,23 @@ export default function Detail() {
           <ChartsWrapper>
             <TandanziWrapper>
               <ChartTitle>최근 10일 탄단지 비율</ChartTitle>
-              <Chart>{/* 그래프 */}</Chart>
+              <Legend
+                data={current}
+                colors={getChartColors()}
+                index={0}
+              />
+              <Chart>
+                {chartData.map((data, index) => (
+                  <div key={index}>
+                    <StackedBarsChart
+                      data={data}
+                      colors={data.map((item) => item.color)}
+                      index={index}
+                    />
+                    <ChartDate>Chart {index + 1}</ChartDate>
+                  </div>
+                ))}
+              </Chart>
             </TandanziWrapper>
             <DetailedWrapper>
               <DetailedChart>
@@ -25,7 +73,9 @@ export default function Detail() {
                   <ChartTitle>평균 몸무게</ChartTitle>
                   <ChartStandard>최근 10일 기준</ChartStandard>
                 </ChartInfoWrapper>
-                <Chart>{/* 그래프 */}</Chart>
+                <Chart>
+                  <WeightChart/>
+                </Chart>
               </DetailedChart>
               <DetailedChart>
                 <ChartInfoWrapper>
@@ -33,7 +83,9 @@ export default function Detail() {
                   <ChartTitle>평균 섭취 칼로리</ChartTitle>
                   <ChartStandard>최근 10일 기준</ChartStandard>
                 </ChartInfoWrapper>
-                <Chart>{/* 그래프 */}</Chart>
+                <Chart>
+                  <CalorieChart/>
+                </Chart>
               </DetailedChart>
             </DetailedWrapper>
           </ChartsWrapper>
@@ -101,7 +153,7 @@ const ChartsWrapper = styled.div`
 `;
 
 const TandanziWrapper = styled.div`
-  width: 1580px;
+  width: 1560px;
   height: 57.3rem;
   padding: 2rem;
   background-color: #ffffff;
@@ -119,7 +171,9 @@ const DetailedChart = styled.div`
   padding: 2rem;
   background-color: #ffffff;
   border-radius: 10px;
-  height: calc((57.3rem - 1.25rem) / 2); // 두 그래프의 높이가 TandanziWrapper와 같도록 설정
+  height: calc(
+    (57.3rem - 1.25rem) / 2
+  ); // 두 그래프의 높이가 TandanziWrapper와 같도록 설정
 `;
 
 const ChartInfoWrapper = styled.div`
@@ -139,18 +193,25 @@ const ChartFigure = styled.div`
 `;
 
 const ChartTitle = styled.h2`
-  margin-bottom: 0.7rem;
   font-size: 1.3rem;
   color: #212b36;
 `;
 
 const ChartStandard = styled.div`
+  margin-top: 0.6rem;
   font-size: 0.9rem;
   color: #8a92a6;
 `;
 
 const Chart = styled.div`
-  align-items: center;
-  justify-content: center;
-  /* 그래프를 구현하는 추가 스타일과 로직 */
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+`;
+
+const ChartDate = styled.h2`
+  margin: -20px 20px 0px 20px;
+  font-size: 1.3rem;
+  color: #212b36;
 `;

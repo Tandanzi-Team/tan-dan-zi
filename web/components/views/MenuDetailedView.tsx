@@ -3,14 +3,13 @@
 import styled from "styled-components"
 import { useRouter } from "next/navigation";
 
-import Trash from "../public/trash.svg"
+import Trash from "@/public/trash.svg"
 
 export default function MenuDetailedView() {
   return (
     <Container>
       <Header>
-        <TodayMe>오늘의 나는</TodayMe>
-        <TodayWeight>56kg</TodayWeight>
+        <TodayMe>오늘의 식단</TodayMe>
         <TodayInfoWrapper>
           탄수화물
         </TodayInfoWrapper>
@@ -27,7 +26,7 @@ export default function MenuDetailedView() {
           당류
         </TodayInfoWrapper>
         <TodayInfoWrapper>
-          식이섬유
+          나트륨
         </TodayInfoWrapper>
       </Header>
       <Row>
@@ -41,7 +40,7 @@ export default function MenuDetailedView() {
         <NutritionCell>10g</NutritionCell>
         <NutritionCell>200kcal</NutritionCell>
         <NutritionCell>30g</NutritionCell>
-        <NutritionCell>7g</NutritionCell>
+        <NutritionCell>600mg</NutritionCell>
       </Row>
       <Row>
         <TrashWrapper>
@@ -54,7 +53,7 @@ export default function MenuDetailedView() {
         <NutritionCell>10g</NutritionCell>
         <NutritionCell>200kcal</NutritionCell>
         <NutritionCell>30g</NutritionCell>
-        <NutritionCell>7g</NutritionCell>
+        <NutritionCell>600mg</NutritionCell>
       </Row>
       <Row>
         <TrashWrapper>
@@ -67,7 +66,7 @@ export default function MenuDetailedView() {
         <NutritionCell>10g</NutritionCell>
         <NutritionCell>200kcal</NutritionCell>
         <NutritionCell>30g</NutritionCell>
-        <NutritionCell>7g</NutritionCell>
+        <NutritionCell>600mg</NutritionCell>
       </Row>
       <Row>
         <TrashWrapper>
@@ -80,7 +79,7 @@ export default function MenuDetailedView() {
         <NutritionCell>10g</NutritionCell>
         <NutritionCell>200kcal</NutritionCell>
         <NutritionCell>30g</NutritionCell>
-        <NutritionCell>7g</NutritionCell>
+        <NutritionCell>600mg</NutritionCell>
       </Row>
       <Row>
         <TrashWrapper>
@@ -93,7 +92,7 @@ export default function MenuDetailedView() {
         <NutritionCell>10g</NutritionCell>
         <NutritionCell>200kcal</NutritionCell>
         <NutritionCell>30g</NutritionCell>
-        <NutritionCell>7g</NutritionCell>
+        <NutritionCell>600mg</NutritionCell>
       </Row>
       <Row>
         <TrashWrapper>
@@ -106,7 +105,7 @@ export default function MenuDetailedView() {
         <NutritionCell>10g</NutritionCell>
         <NutritionCell>200kcal</NutritionCell>
         <NutritionCell>30g</NutritionCell>
-        <NutritionCell>7g</NutritionCell>
+        <NutritionCell>600mg</NutritionCell>
       </Row>
     </Container>
   );
@@ -137,17 +136,10 @@ const Header = styled.div`
 `;
 
 const TodayMe = styled.h1`
-  margin-right: -60px;
+  margin-right: 360px;
   font-size: 2.5rem;
   font-weight: 700;
   color: #212B36;
-`;
-
-const TodayWeight = styled.span`
-  margin-right: 220px;
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #8A92A6;
 `;
 
 const Row = styled.div`

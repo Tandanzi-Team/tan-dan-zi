@@ -4,10 +4,27 @@ import styled from 'styled-components';
 import { useRouter } from 'next/navigation';
 
 import NavigatonBar from '../../components/NavigatonBar';
-import MenuQuickView from '../../components/MenuQuickView';
+import MenuQuickView from '../../components/views/MenuQuickView';
+import ChartComponent from '../../components/charts/TodayChart';
+import StackedBarChart from '../../components/charts/StackedBarChart';
+import LegendComponent from '../../components/charts/Legend';
 
 export default function Main() {
   const router = useRouter();
+
+  const current = [
+    { name: '탄수화물', value: 40, color: '#ff3a29' },
+    { name: '단백질', value: 20, color: '#ffb200' },
+    { name: '지방', value: 40, color: '#4339f2' },
+  ];
+  const ideal = [
+    { name: '탄수화물', value: 50, color: '#fb9990' },
+    { name: '단백질', value: 30, color: '#fbd57c' },
+    { name: '지방', value: 20, color: '#9d98f5' },
+  ];
+
+  const getCurrentColors = () => current.map((item) => item.color);
+  const getIdealColors = () => ideal.map((item) => item.color);
 
   return (
     <Container>
@@ -20,49 +37,59 @@ export default function Main() {
           </UserInfoWrapper>
           <TodayInfoWrapper>
             <TodayInfo>
-              <InfoTitle>목표 몸무게까지</InfoTitle>
-              <InfoFigure>5kg</InfoFigure>
+              <InfoTitle>오늘의 몸무게</InfoTitle>
+              <InfoFigure>56kg</InfoFigure>
               <InfoWrapper>
-                <InfoCompare>-10kg</InfoCompare>
-                <InfoStandard>최근 10일</InfoStandard>
+                <InfoStandard>어제보다</InfoStandard>
+                <InfoCompare>-1kg</InfoCompare>
               </InfoWrapper>
-              <InfoGraph>그래프</InfoGraph>
+              <InfoGraph>
+                <ChartComponent />
+              </InfoGraph>
             </TodayInfo>
             <TodayInfo>
               <InfoTitle>오늘의 칼로리</InfoTitle>
               <InfoFigure>5000kcal</InfoFigure>
               <InfoWrapper>
+                <InfoStandard>어제보다</InfoStandard>
                 <InfoCompare>-20kcal</InfoCompare>
-                <InfoStandard>최근 10일</InfoStandard>
               </InfoWrapper>
-              <InfoGraph>그래프</InfoGraph>
+              <InfoGraph>
+                <ChartComponent />
+              </InfoGraph>
             </TodayInfo>
             <TodayInfo>
               <InfoTitle>오늘의 탄수화물</InfoTitle>
               <InfoFigure>20g</InfoFigure>
               <InfoWrapper>
+                <InfoStandard>어제보다</InfoStandard>
                 <InfoCompare>-2g</InfoCompare>
-                <InfoStandard>최근 10일</InfoStandard>
               </InfoWrapper>
-              <InfoGraph>그래프</InfoGraph>
+              <InfoGraph>
+                <ChartComponent />
+              </InfoGraph>
             </TodayInfo>
             <TodayInfo>
               <InfoTitle>오늘의 단백질</InfoTitle>
               <InfoFigure>20g</InfoFigure>
               <InfoWrapper>
+                <InfoStandard>어제보다</InfoStandard>
                 <InfoCompare>-10g</InfoCompare>
-                <InfoStandard>최근 10일</InfoStandard>
               </InfoWrapper>
-              <InfoGraph>그래프</InfoGraph>
+              <InfoGraph>
+                <ChartComponent />
+              </InfoGraph>
             </TodayInfo>
             <TodayInfo>
               <InfoTitle>오늘의 지방</InfoTitle>
               <InfoFigure>50g</InfoFigure>
               <InfoWrapper>
+                <InfoStandard>어제보다</InfoStandard>
                 <InfoCompare>+100g</InfoCompare>
-                <InfoStandard>최근 10일</InfoStandard>
               </InfoWrapper>
-              <InfoGraph>그래프</InfoGraph>
+              <InfoGraph>
+                <ChartComponent />
+              </InfoGraph>
             </TodayInfo>
             <TodayMenu>
               <MenuQuickView />
@@ -70,7 +97,26 @@ export default function Main() {
           </TodayInfoWrapper>
         </ContentWrapper>
         <TodayTandanzi>
-          <TodayTandanziTitle>오늘의 탄단지 비율</TodayTandanziTitle>
+          <TodayTandanziTitle>
+            오늘의 탄단지 비율
+            <LegendComponent
+              data={current}
+              colors={getCurrentColors()}
+              index={0}
+            />
+            <ChartsContainer>
+              <StackedBarChart
+                data={current}
+                colors={getCurrentColors()}
+                index={0}
+              />
+              <StackedBarChart
+                data={ideal}
+                colors={getIdealColors()}
+                index={1}
+              />
+            </ChartsContainer>
+          </TodayTandanziTitle>
         </TodayTandanzi>
       </MainContent>
     </Container>
@@ -123,10 +169,7 @@ const Date = styled.div`
 
 const TodayInfoWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(
-    5,
-    1fr
-  ); // 5개의 요소 각각에 1fr 분량의 공간 할당
+  grid-template-columns: repeat(5, 1fr);
   gap: 20px;
   padding: 20px;
   align-items: start;
@@ -149,7 +192,7 @@ const TodayInfo = styled.div`
 const InfoTitle = styled.div`
   font-size: 1rem;
   color: #212b36;
-  margin: 0px 0px -60px 8px;
+  margin: 0px 0px -50px 8px;
 `;
 
 const InfoFigure = styled.div`
@@ -164,7 +207,7 @@ const InfoWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-left: 0.25rem;
+  margin-left: 0.5rem;
 `;
 
 const InfoCompare = styled.div`
@@ -178,9 +221,7 @@ const InfoStandard = styled.div`
 `;
 
 const InfoGraph = styled.div`
-  height: 60px;
   margin: 0px 0px -10px 7px;
-  /* 그래프를 구현하는 추가 스타일과 로직 */
 `;
 
 const TodayMenu = styled.div`
@@ -199,7 +240,7 @@ const TodayTandanzi = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 5.1rem;
-  width: 28rem;
+  width: 26.25rem;
   height: 57.3rem;
   align-items: left;
   padding: 2rem;
@@ -212,4 +253,10 @@ const TodayTandanziTitle = styled.div`
   text-align: left;
   color: #212b36;
   margin: 0px 0px -3.75rem 0.5rem;
+`;
+
+const ChartsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 0rem 3rem;
 `;

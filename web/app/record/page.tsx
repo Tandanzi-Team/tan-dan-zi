@@ -3,7 +3,7 @@
 import styled from "styled-components";
 
 import NavigatonBar from "../../components/NavigatonBar";
-import MenuDetailedView from "../../components/MenuDetailedView";
+import MenuDetailedView from "../../components/views/MenuDetailedView";
 import Calendar from "../../public/calendar.svg";
 
 export default function Record() {
